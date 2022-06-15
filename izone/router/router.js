@@ -14,11 +14,25 @@ router.get("/intro", function (request, response) {
     });
 });
 
+router.get("/expert", function (request, response) {
+
+    response.render("expert_intro",{
+        user: request.session.user
+    });
+});
+
+router.get("/dcCenter", function (request, response) {
+
+    response.render("dcCenter_intro",{
+        user: request.session.user
+    });
+});
+
 router.post("/login", function (request, response) {
     let id = request.body.id;
     let pw = request.body.pw;
 
-    let sql = "select * from user_info where id = ? and pw = ?";
+    let sql = "select * from user_info where user_id = ? and pw = ?";
     conn.query(sql, [id, pw], function (err, rows) {
         console.log("로그인 성공");
         console.log(rows.length);
@@ -28,7 +42,12 @@ router.post("/login", function (request, response) {
                 "org": rows[0].org,
                 "class": rows[0].class
             }
-            response.redirect("http://127.0.0.1:3307/intro");
+            console.log(rows[0].class)
+            if (rows[0].class == 'e'){
+                response.redirect("/expert"); //전문가 class 확인, 전문가 페이지 접근
+            }else{
+                response.redirect("/dcCenter"); //센터 class 확인, 어린이집 페이지 접근
+            } 
             
         } else {
             console.log("로그인 실패");
