@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- 부트스트랩 css 사용 -->
-    <link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../public/bootstrap-4.4.1-dist/css/bootstrap.css">
     <!-- main css -->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="../public/css/main.css">
 </head>
 <body>
   
@@ -21,23 +21,18 @@
           </li>
           
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle nav_intro" data-bs-toggle="dropdown" href="#" id="navbarDropdown" role="button" aria-expanded="false">기능소개</a>
-            
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item nav_intro" id="move" href="#scrollspyHeading2">행동인식</a></li>
-              <li><a class="dropdown-item nav_intro" id="face" href="#scrollspyHeading3">얼굴인식</a></li>
-            </ul>
+            <a class="nav-link nav_intro" href="#scrollspyHeading2">기능 소개</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link nav_intro" href="#scrollspyHeading4">연계 기업</a>
+            <a class="nav-link nav_intro" href="#scrollspyHeading3">연계 기업</a>
           </li>
           <li class="nav-item dropdown" >
             <a class="nav-link dropdown-toggle nav_intro" id="log_margin" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">서포트</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item nav_intro" href="#scrollspyHeading5">프로그램 사용 설명서</a></li>
-              <li><a class="dropdown-item nav_intro" href="#scrollspyHeading6">자주 묻는 질문</a></li>
+              <li><a class="dropdown-item nav_intro" href="#">프로그램 사용 설명서</a></li>
+              <li><a class="dropdown-item nav_intro" href="#">자주 묻는 질문</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item nav_intro" href="#scrollspyHeading7">서비스 이용 신청하기</a></li>
+              <li><a class="dropdown-item nav_intro" href="#">서비스 이용 신청하기</a></li>
             </ul>
           </li>
           <li><button id="nav_log" class="btn">로그인</button></li>
@@ -59,43 +54,27 @@
         <!-- 2. 우리 얼굴인식기능 이랑 행동인식 써서 정확한 판단 가능혀 -->
         
             <!-- 버튼그룹바 -->
-      <div id="skill_btn_part">
-        <div id="scrollspyHeading2 scrollspyHeading3" class="skill">
-        <section>
-          <ul class="btn_set">
-            <li data-filter=".filter-face" id="skill_btn" class="btn">얼굴 인식</li>
-            <li data-filter=".filter-move" id="skill_btn" class="btn">행동 인식</li>
-          </ul>
-          <div id="skill_img_part">
-          <div class="skill-item filter-face">
-            <div class="skill-wrap">
-              <img src="../img/그룹 30.png" class="img-fluid" alt="">
-              <div class="skill-info">
-                <h4>얼굴을 감지하여 대상을 빠르게 인지하고 기록합니다.</h4>
-              </div>
-            </div>
-          </div>
-          <div class="skill-item filter-move">
-            <div class="skill-wrap">
-              <img src="../img/그룹 29.png" class="img-fluid" alt="">
-              <div class="skill-info">
-                <h4>실시간 cctv녹화로 학대의심여부를 빠르게 인지하고 기록합니다.</h4>
-              </div>
-            </div>
-          </div>
-          </div>
-        </section>
+            <div id="scrollspyHeading2">
+      <div id="skill_btn_part"  class="skill">
+          <button id="skill_btn" onclick="face()" class="btn face" >얼굴 인식</button>
+          <button id="skill_btn" onclick="move()" class="btn move">행동 인식</button>
       </div>
+    <div id="skill_img_part">
+      <h1 id="skill_txt"> 얼굴을 감지하여 대상을 <br> 빠르게 인지하고 기록합니다.</h1>
+      <img id="img" src="../img/그룹 30.png" alt="">
     </div>
+  </div>
         <!-- 4. 연계기업 -->
-        <div id="scrollspyHeading4" class="linked_company">
+        <div id="scrollspyHeading3">
+        <div class="linked_company">
           <div> <img src="../img/이미지 4.png" alt=""><span>아동보호전문기관</span></div>
           <div><img src="../img/이미지 5.png" alt=""><span>경찰청</span></div>
           <div><img src="../img/이미지 6.png" alt=""><span>연계CCTV업체</span></div>
         </div>
+      </div>
 
         <!-- 5. 마지막으로 말한다 지금 서비스 시작혀 -->
-        <div id="scrollspyHeading5 main_topserv_text" class="restart">
+        <div id="main_topserv_text" class="restart">
             <h1>아이가 안전한 공간을 <br> 눈으로 확인하세요!</h1>
             <button id="restart_btn" class="btn">시작하기</button>
         </div>
@@ -103,22 +82,20 @@
     <!-- 기업정보는 없지만 혹시 모르니 넣어두는 발바닥 -->
     <footer> </footer>
     <script >
-      $(document).ready( function() { 
-
-        $('#skill_img_part').isotope({
-          itemSelector: '.skill_item',
-        });
+        function move() {
+          var tag1 = document.getElementById("img");
+          tag1.src="../img/그룹 29.png";
+          const element = document.getElementById('skill_txt');
+          element.innerHTML = "실시간 cctv녹화로 학대의심여부를 <br> 빠르게 인지하고 기록합니다.";
+        }
+        function face() {
+          var tag1 = document.getElementById("img");
+          tag1.src="../img/그룹 30.png";
+          const element = document.getElementById('skill_txt');
+          element.innerHTML = "얼굴을 감지하여 대상을 <br> 빠르게 인지하고 기록합니다.";
+        }
         
-        // filter items on button click
-        $('.btn_set').on( 'click', 'li', function() {
-          var filterValue = $(this).children().attr('data-filter');
-          $('#skill_img_part').isotope({ filter: filterValue });
-          $('.btn_set li').removeClass('on');
-          $(this).addClass('on');
-        });
-            })
     </script>
-    <script src="js/isotope.pkgd.min.js"></script>
      <!-- 부트스트랩 js 사용 -->
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
