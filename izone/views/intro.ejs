@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- 부트스트랩 css 사용 -->
-    <link rel="stylesheet" href="../public/bootstrap-4.4.1-dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/bootstrap-4.4.1-dist/css/bootstrap.css">
     <!-- main css -->
-    <link rel="stylesheet" href="../public/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
   
     <!-- 여기에 로고랑 메뉴 목록 ( 서비스안내 / 기능소개(행동인식/ 얼굴인식) / 연계기업 / 서포트(q&a /프로그램 사용설명서 / 이용신청))이랑 로그인 버튼 넣을거임 -->
     <nav id="navbar-example2 nav" class="navbar navbar-light bg-light px-3">
-        <a class="navbar-brand" href="#"><img src="../img/izone_logo.png" alt="" id="logo"></a>
+        <a class="navbar-brand" href="#"><img src="/img/izone_logo.png" alt="" id="logo"></a>
         <ul class="nav nav-pills">
           <li class="nav-item">
             <a class="nav-link nav_intro" href="#scrollspyHeading1">서비스 안내</a>
@@ -56,7 +56,6 @@
             <div id="main_topserv_img">
             </div>
         </div>
-
         <!-- 2. 우리 얼굴인식기능 이랑 행동인식 써서 정확한 판단 가능혀 -->
         
             <!-- 버튼그룹바 -->
@@ -67,15 +66,15 @@
       </div>
     <div id="skill_img_part">
       <h1 id="skill_txt"> 얼굴을 감지하여 대상을 <br> 빠르게 인지하고 기록합니다.</h1>
-      <img id="img" src="../img/그룹 30.png" alt="">
+      <img id="img" src="/img/그룹 30.png" alt="">
     </div>
   </div>
         <!-- 4. 연계기업 -->
         <div id="scrollspyHeading3">
         <div class="linked_company">
-          <div> <img src="../img/이미지 4.png" alt=""><span>아동보호전문기관</span></div>
-          <div><img src="../img/이미지 5.png" alt=""><span>경찰청</span></div>
-          <div><img src="../img/이미지 6.png" alt=""><span>연계CCTV업체</span></div>
+          <div> <img src="/img/이미지 4.png" alt=""><span>아동보호전문기관</span></div>
+          <div><img src="/img/이미지 5.png" alt=""><span>경찰청</span></div>
+          <div><img src="/img/이미지 6.png" alt=""><span>연계CCTV업체</span></div>
         </div>
       </div>
 
@@ -90,13 +89,13 @@
     <script >
         function move() {
           var tag1 = document.getElementById("img");
-          tag1.src="../img/그룹 29.png";
+          tag1.src="/img/그룹 29.png";
           const element = document.getElementById('skill_txt');
           element.innerHTML = "실시간 cctv녹화로 학대의심여부를 <br> 빠르게 인지하고 기록합니다.";
         }
         function face() {
           var tag1 = document.getElementById("img");
-          tag1.src="../img/그룹 30.png";
+          tag1.src="/img/그룹 30.png";
           const element = document.getElementById('skill_txt');
           element.innerHTML = "얼굴을 감지하여 대상을 <br> 빠르게 인지하고 기록합니다.";
         }
