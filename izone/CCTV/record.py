@@ -8,27 +8,28 @@ from sqlalchemy import create_engine
 cap = cv2.VideoCapture(0)
 cap.set(3, 720) # 윈도우 크기
 cap.set(4, 1080)
-fc = 20.0
+fc = 10.0
 codec = cv2.VideoWriter_fourcc('D', 'I', 'V', 'X')
 count = 99
 while(cap.isOpened()):
     
     #DB에 연결
-    conn = pymysql.connect(host = "localhost", port = 3306, user = "root", password = "1234", db = "CCTV", charset = "utf8")
+    conn = pymysql.connect(host = "project-db-stu.ddns.net", port = 3307, user = "CCTV", password = "0623", db = "CCTV", charset = "utf8")
 
     # 연결한 데이터베이스와 상호작용하는 cursor 객체 생성하기
     cursor = conn.cursor(pymysql.cursors.DictCursor)
     
-    if count != time.strftime('%H',time.localtime(time.time())): # 시간이 바뀌면 영상파일을 새로 생성 (시간으로 감지)
+    if count != time.strftime('%M',time.localtime(time.time())): # 시간이 바뀌면 영상파일을 새로 생성 (시간으로 감지)
         
-        count = time.strftime('%H',time.localtime(time.time()))
+        count = time.strftime('%M',time.localtime(time.time()))
         print('시간 변경 감지')
         
         out = cv2.VideoWriter(time.strftime('C:/CCTV/%Y-%m-%d %H %M',time.localtime(time.time()))+'.avi', codec, fc, (int(cap.get(3)), int(cap.get(4))))
         filename = time.strftime('%Y-%m-%d %H %M',time.localtime(time.time()))+'.avi'
         filepath = time.strftime('C:/CCTV/%Y-%m-%d %H %M',time.localtime(time.time()))+'.avi'
-        sql = "INSERT INTO c_video (s_path, f_name) VALUES (%s, %s)"
-        val = (filepath, filename)
+        u_id = "smhrd2"
+        sql = "INSERT INTO org_video (u_id, f_name, s_path) VALUES (%s, %s, %s)"
+        val = (u_id, filename, filepath)
         cursor.execute(sql, val)
         conn.commit()
         conn.close()
@@ -48,4 +49,4 @@ while(cap.isOpened()):
         break
     
 cap.release()
-cv2.destroyAllWindows()
+cv2.destroyAllWindows() 
