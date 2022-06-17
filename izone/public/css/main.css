@@ -42,6 +42,22 @@
     padding-bottom: 200px;
 
 }
+#a:link{
+    text-decoration: none;
+    color: #ffffff;
+}
+#a:visited{
+    text-decoration: none;
+    color: #ffffff;
+}
+#a:hover{
+    text-decoration: none;
+    color: #ffffff;
+}
+#a:active{
+    text-decoration: none;
+    color: #ffffff;
+}
 
 #main_topserv_text {
     display: flex;
@@ -66,7 +82,7 @@
 }
 
 #main_topserv_img {
-    background: transparent url('../../img/mainimg.jpg') 50% 50% no-repeat padding-box;
+    background: transparent url('../../img/mainimg.png') 50% 50% no-repeat padding-box;
     background-size: 947px;
     display: flex;
     justify-content: center;

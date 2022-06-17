@@ -2,8 +2,6 @@
     display: flex;
     justify-content: space-between;
 }
-
-
 #nav_part {
     margin-top: 100px;
     margin-left: 85px;
@@ -51,15 +49,6 @@
     height: 108px;
 
 }
-/* #h :hover {
-    background: transparent url('../../img/nav_h2.png') 50% 50% no-repeat padding-box;
-}
-#r :hover {
-    background: transparent url('../../img/nav_r2.png') 50% 50% no-repeat padding-box;
-}
-#c :hover {
-    background: transparent url('../../img/nav_c2.png') 50% 50% no-repeat padding-box;
-} */
 
 .nav-item:nth-child(1){
     padding-top: 80px;
@@ -219,6 +208,15 @@
     position: relative;
     top:2px;
 }
+.expert_bigcut_box:hover {
+    background: var(--unnamed-color-83b1c9) 0% 0% no-repeat padding-box;
+}
+.expert_bigcut_box:active {
+    background: var(--unnamed-color-83b1c9) 0% 0% no-repeat padding-box;
+    box-shadow: 1px 1px 0 rgb(0,0,0,0.5);
+    position: relative;
+    top:2px;
+}
 .part_bigcut_box > h3 {
     font: normal normal 500 25px/28px NanumSquareRoundOTF;
     color: var(--unnamed-color-525556);
@@ -236,25 +234,14 @@
 }
 #part2 {
     margin-right: 95px;
-    margin-top: 240px;
+    margin-top: 180px;
 }
 
 .circular {
-    display: flex;
-    justify-content: start;
+    width: 500px;
+    height: 300px;
 
 
-}
-.circular >h4 {
-   
-    color: var(--unnamed-color-525556);
-    text-align: left;
-    font: normal normal 800 30px/35px NanumSquareRoundOTF; 
-}
-.circular >img {
-    width: 27px;
-    height: 27px;
-    margin-left: 20px;
 }
 #part2 > div > h5 {
     margin-top: 15px;
@@ -264,10 +251,10 @@
     font: normal normal 300 25px/28px NanumSquareRoundOTF;
 }
 #part2_gide_box {
-    margin-top: 80px;
+    margin-top: 85px;
     padding-left: 32px;
     padding-top: 63px;
-    width: 465px;
+    width: 530px;
     height: 300px;
     background: var(--unnamed-color-d1dfe8) 0% 0% no-repeat padding-box;
     border-radius: 10px;
