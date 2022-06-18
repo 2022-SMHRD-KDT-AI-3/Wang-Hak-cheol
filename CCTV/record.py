@@ -25,15 +25,15 @@ while(cap.isOpened()):
         print('시간 변경 감지')
         
         out = cv2.VideoWriter(time.strftime('C:/CCTV/%Y-%m-%d %H %M',time.localtime(time.time()))+'.avi', codec, fc, (int(cap.get(3)), int(cap.get(4))))
-        filename = time.strftime('%Y-%m-%d %H %M',time.localtime(time.time()))+'.avi'
-        filepath = time.strftime('C:/CCTV/%Y-%m-%d %H %M',time.localtime(time.time()))+'.avi'
-        u_id = "smhrd2"
-        sql = "INSERT INTO org_video (u_id, f_name, s_path) VALUES (%s, %s, %s)"
-        val = (u_id, filename, filepath)
+        dcv_id = "smhrd2"
+        dcv_name = time.strftime('%Y-%m-%d %H %M',time.localtime(time.time()))+'.avi'
+        dcv_path = time.strftime('C:/CCTV/%Y-%m-%d %H %M',time.localtime(time.time()))+'.avi'
+        sql = "INSERT INTO org_video (dcv_id, dcv_name, dcv_path) VALUES (%s, %s, %s)"
+        val = (dcv_id, dcv_name, dcv_path)
         cursor.execute(sql, val)
         conn.commit()
         conn.close()
-        print('파일 생성:',filename)
+        print('파일 생성:',dcv_name)
     
     ret, frame = cap.read()
     #frame = cv2.flip(frame,1) # 화면 반전 0: 상하, 1: 좌우
