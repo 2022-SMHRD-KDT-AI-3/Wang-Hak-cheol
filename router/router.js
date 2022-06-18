@@ -14,6 +14,7 @@ router.get("/intro", function (request, response) {
     });
 });
 
+// 전문가페이지 접근 라우터
 router.get("/expert", function (request, response) {
 
     response.render("expert_intro",{
@@ -21,6 +22,7 @@ router.get("/expert", function (request, response) {
     });
 });
 
+// 어린이집페이지 접근 라우터
 router.get("/dcCenter", function (request, response) {
 
     response.render("dcCenter_intro",{
@@ -34,6 +36,7 @@ router.get("/join", function (request, response) {
 
 });
 
+// 회원가입 라우터
 router.post("/join", function (request, response) {
     let id = request.body.id;
     let pw = request.body.pw;
@@ -67,50 +70,52 @@ router.post("/join", function (request, response) {
     }
 });
 
-router.post("/login_e", function (request, response) {
+// 로그인 라우터(전문가, 어린이집 분기)
+router.post("/login", function (request, response) {
     let id = request.body.id;
     let pw = request.body.pw;
+    let classification = request.body.classification;
 
-    let sql = "select * from expert_info where expert_id = ? and epw = ?";
-    conn.query(sql, [id, pw], function (err, rows) {
-        console.log("로그인 성공");
-        console.log(rows.length);
-        if (rows.length > 0) {
-            request.session.user = {
-                "org_name": rows[0].org_name,
-                "org_address": rows[0].org_address,
-                "org_tel": rows[0].org_tel,
-                "expert_name": rows[0].expert_name
+    if (classification == 'e') {
+
+        let sql = "select * from expert_info where expert_id = ? and epw = ?";
+        conn.query(sql, [id, pw], function (err, rows) {
+            console.log("로그인 성공e");
+            console.log(rows.length);
+            if (rows.length > 0) {
+                request.session.user = {
+                    "org_name": rows[0].org_name,
+                    "org_address": rows[0].org_address,
+                    "org_tel": rows[0].org_tel,
+                    "expert_name": rows[0].expert_name
+                }
+                response.redirect("/expert"); //전문가 페이지 접근
+
+            } else {
+                console.log("로그인 실패");
+            };
+        });
+
+    } else {
+        let sql = "select * from dc_info where dc_id = ? and pw = ?";
+        conn.query(sql, [id, pw], function (err, rows) {
+            console.log("로그인 성공c");
+            console.log(rows.length);
+            if (rows.length > 0) {
+                request.session.user = {
+                    "charge_id": rows[0].charge_id,
+                    "dc_name": rows[0].dc_name,
+                    "dc_address": rows[0].dc_address,
+                    "dc_tel": rows[0].dc_tel,
+                    "user_name": rows[0].user_name
+                }
+                response.redirect("/dcCenter"); //어린이집 페이지 접근
+                
+            } else {
+                console.log("로그인 실패");
             }
-            response.redirect("/expert"); //전문가 페이지 접근
-            
-        } else {
-            console.log("로그인 실패");
-        }
-    });
-});
-
-router.post("/login_c", function (request, response) {
-    let id = request.body.id;
-    let pw = request.body.pw;
-
-    let sql = "select * from dc_info where dc_id = ? and pw = ?";
-    conn.query(sql, [id, pw], function (err, rows) {
-        console.log("로그인 성공");
-        console.log(rows.length);
-        if (rows.length > 0) {
-            request.session.user = {
-                "dc_name": rows[0].dc_name,
-                "dc_address": rows[0].dc_address,
-                "dc_tel": rows[0].dc_tel,
-                "user_name": rows[0].user_name
-            }
-            response.redirect("/dcCenter"); //전문가 페이지 접근
-            
-        } else {
-            console.log("로그인 실패");
-        }
-    });
+        });
+    };
 });
 
 router.get("/logout", function (request, response) {
