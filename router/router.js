@@ -65,6 +65,8 @@ router.post("/join", function (request, response) {
             if (rows) {
                 console.log("가입완료c");
                 response.redirect("http://127.0.0.1:3307/intro");
+            } else {
+                console.log(err);
             }
         });
     }
@@ -97,6 +99,7 @@ router.post("/login", function (request, response) {
         });
 
     } else {
+        count = 0
         let sql = "select * from dc_info where dc_id = ? and pw = ?";
         conn.query(sql, [id, pw], function (err, rows) {
             console.log("로그인 성공c");
@@ -107,8 +110,18 @@ router.post("/login", function (request, response) {
                     "dc_name": rows[0].dc_name,
                     "dc_address": rows[0].dc_address,
                     "dc_tel": rows[0].dc_tel,
-                    "user_name": rows[0].user_name
+                    "name": rows[0].user_name
                 }
+                // let sql = "select dcv_id, mv_no, op_no from dc_video d, model_video m, expert_opinion e where d.video_no = m.v_noand m.mv_no = e.emv_no;";
+                // conn.query(sql, [], function (err, rows) {
+                //     console.log("값 불러와지나?");
+                //     console.log(rows.length);
+                //     if (rows!=0) {
+                //         request.session.dcop = {
+                //             "count": rows.length
+                //         }
+                //     }
+                // });
                 response.redirect("/dcCenter"); //어린이집 페이지 접근
                 
             } else {
