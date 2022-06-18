@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>izone</title>
+    <!-- 부트스트랩 css 사용 -->
+    <link rel="stylesheet" type="text/css" href="/bootstrap-4.4.1-dist/css/bootstrap.css">
+    <!-- main css -->
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+<body >
+  
+    <!-- 여기에 로고랑 메뉴 목록 ( 서비스안내 / 기능소개(행동인식/ 얼굴인식) / 연계기업 / 서포트(q&a /프로그램 사용설명서 / 이용신청))이랑 로그인 버튼 넣을거임 -->
+    <nav id="navbar-example2 nav" class="navbar navbar-light bg-light px-3">
+        <a class="navbar-brand" href="#"><img src="/img/izone_logo.png" alt="" id="logo"></a>
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link nav_intro" href="#scrollspyHeading1">서비스 안내</a>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link nav_intro" href="#scrollspyHeading2">기능 소개</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav_intro" href="#scrollspyHeading3">연계 기업</a>
+          </li>
+          <li>
+            <button id="nav_join" class="btn"><a href="/join">회원가입</a></button>
+            <%if(user==null){%>
+              <button id="nav_log" class="btn"><a id="e" href="/login_e.html">전문가 로그인</a></button>
+              <button id="nav_log" class="btn"><a id="c" href="/login_c.html">어린이집 로그인</a></button>
+              <%}%>
+          </li>
+        </ul>
+      </nav>
+    <div id="fullpage" data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+        <!-- 1. 어린이집 페이지 보여주고 시작하라고 강요하는 파트 -->
+        <div id="scrollspyHeading1 " class="main_topserv section">
+            <!-- 설명하고 버튼 강요 -->
+            <div id="main_topserv_text">
+                <h1>아이가 안전한 공간을 <br> 눈으로 확인하세요!</h1>
+                <button id="main_topserv_btn" class="btn">시작하기</button>
+            </div>
+            <!-- 어린이집 페이지 이미지로 보여줌밍 -->
+            <div id="main_topserv_img">
+            </div>
+        </div>
+        <!-- 2. 우리 얼굴인식기능 이랑 행동인식 써서 정확한 판단 가능혀 -->
+        
+            <!-- 버튼그룹바 -->
+            <div id="scrollspyHeading2" class="section">
+      <div id="skill_btn_part"  class="skill">
+          <button id="skill_btn" onclick="face()" class="btn face" >얼굴 인식</button>
+          <button id="skill_btn" onclick="move()" class="btn move">행동 인식</button>
+      </div>
+    <div id="skill_img_part">
+      <h1 id="skill_txt"> 얼굴을 감지하여 대상을 <br> 빠르게 인지하고 기록합니다.</h1>
+      <img id="img" src="/img/그룹 30.png" alt="">
+    </div>
+  </div>
+        <!-- 4. 연계기업 -->
+        <div id="scrollspyHeading3" class="section">
+        <div class="linked_company">
+          <div> <img src="/img/이미지 4.png" alt=""><span>아동보호전문기관</span></div>
+          <div><img src="/img/이미지 5.png" alt=""><span>경찰청</span></div>
+          <div><img src="/img/이미지 6.png" alt=""><span>연계CCTV업체</span></div>
+        </div>
+      </div>
+
+        <!-- 5. 마지막으로 말한다 지금 서비스 시작혀 -->
+        <div id="main_topserv_text" class="restart section">
+             <!--<h1>아이가 안전한 공간을 <br> 눈으로 확인하세요!</h1>-->
+            <button id="restart_btn" class="btn">아이존 시작하기</button>
+        </div>
+    </div>
+    <!-- 기업정보는 없지만 혹시 모르니 넣어두는 발바닥 -->
+    <footer> </footer>
+    <script type="text/javascript" src="fullpage.js"></script>
+    <script >
+      new fullpage('#fullpage', {
+        //options here
+        autoScrolling:true,
+        scrollHorizontally: true
+      });
+
+        function move() {
+          var tag1 = document.getElementById("img");
+          tag1.src="/img/그룹 29.png";
+          const element = document.getElementById('skill_txt');
+          element.innerHTML = "실시간 cctv녹화로 학대의심여부를 <br> 빠르게 인지하고 기록합니다.";
+        }
+        function face() {
+          var tag1 = document.getElementById("img");
+          tag1.src="/img/그룹 30.png";
+          const element = document.getElementById('skill_txt');
+          element.innerHTML = "얼굴을 감지하여 대상을 <br> 빠르게 인지하고 기록합니다.";
+        }
+        
+    </script>
+
+     <!-- 부트스트랩 js 사용 -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>
